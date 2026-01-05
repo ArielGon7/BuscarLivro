@@ -21,8 +21,9 @@ public class LivroRepository {
     public static Optional<Livro> findBy(Predicate<Livro> predicate){
         Livro found = null;
         for (Livro livro : list) {
-            livro.equals(predicate);
-            found = livro;
+            if(predicate.test(livro)){
+                found = livro;
+            }
         }
         return Optional.ofNullable(found);
     }
